@@ -33,6 +33,9 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"SpinBetter App","operatingSystem":"ANDROID","applicationCategory":"SportsApplication","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"84520"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"W300 क्या है? / What is W300?","acceptedAnswer":{"@type":"Answer","text":"W300 is an exclusive promo code that unlocks a special welcome bonus on your first deposit at SpinBetter."}},{"@type":"Question","name":"कोड कहाँ डालें? / Where to enter W300?","acceptedAnswer":{"@type":"Answer","text":"Enter W300 in the Promo Code field during registration, before completing sign-up."}},{"@type":"Question","name":"UPI withdrawal speed?","acceptedAnswer":{"@type":"Answer","text":"Verified accounts get withdrawals processed in under 1 minute via UPI, Paytm and PhonePe."}},{"@type":"Question","name":"Is registration free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free. Creating an account costs nothing — only deposit when you are ready."}}]}
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3720G0G5X"></script>
 <script>
@@ -44,6 +47,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
 <style>
@@ -116,7 +120,7 @@ body::after{
 /* ═══════════════════════════════════════════
    LAYOUT
 ═══════════════════════════════════════════ */
-.wrap{position:relative;z-index:1}
+.wrap{position:relative;z-index:1;padding-top:var(--hdr)}
 .inner{max-width:var(--max);margin:0 auto;padding:0 28px}
 .sec{padding:80px 0}
 
@@ -186,7 +190,7 @@ header{
 .hero-grid{
   display:grid;grid-template-columns:1fr;
   align-items:center;gap:0;
-  padding-top:calc(var(--hdr) + 40px);padding-bottom:80px;
+  padding-top:40px;padding-bottom:80px;
   max-width:680px;margin:0 auto;text-align:center;
 }
 .hero-grid .hero-ctas{justify-content:center}
@@ -1067,6 +1071,200 @@ footer {
   .tg-float{width:48px;height:48px;bottom:16px;right:14px}
   .tg-block{padding:36px 18px}
 }
+/* ═══════════════════════════════════════════
+   #1 HERO COUNTDOWN TIMER
+═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   #1 HERO COUNTDOWN TIMER — redesigned
+═══════════════════════════════════════════ */
+.hero-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10,10,15,.7);
+  border: 1px solid rgba(255,80,80,.28);
+  border-radius: 14px;
+  padding: 10px 18px;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 24px rgba(255,70,70,.08), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.hcd-label {
+  font-size: .62rem;
+  color: rgba(255,120,120,.7);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding-right: 8px;
+  border-right: 1px solid rgba(255,80,80,.18);
+  margin-right: 4px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.hcd-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.hcd-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FF6B6B;
+  line-height: 1;
+  min-width: 2ch;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(255,80,80,.4);
+}
+.hcd-unit {
+  font-size: .48rem;
+  color: rgba(255,107,107,.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--fb);
+}
+.hcd-sep {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: rgba(255,107,107,.35);
+  padding: 0 1px;
+  margin-bottom: 8px;
+}
+@keyframes countdown-pulse {0%,100%{opacity:1}50%{opacity:.4}}
+.hcd-num.tick { animation: countdown-pulse .25s ease; }
+
+/* ═══════════════════════════════════════════
+   #2 ANIMATED STAT COUNTERS
+═══════════════════════════════════════════ */
+.sn[data-target] {transition:color .2s;}
+
+/* ═══════════════════════════════════════════
+   #3 COPY TOOLTIP
+═══════════════════════════════════════════ */
+.copy-tooltip {
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--g);color:#001C0E;
+  padding:10px 20px;border-radius:30px;
+  font-family:var(--fh);font-size:.9rem;letter-spacing:.5px;
+  box-shadow:0 8px 28px rgba(0,255,135,.4);
+  opacity:0;pointer-events:none;z-index:9999;
+  transition:opacity .25s,transform .25s;
+  white-space:nowrap;
+}
+.copy-tooltip.show {opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ═══════════════════════════════════════════
+   #6 STICKY BAR W300 SHINE
+═══════════════════════════════════════════ */
+.sbc-val {
+  position:relative;overflow:hidden;display:inline-block;
+}
+.sbc-val::after {
+  content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);
+  transform:skewX(-20deg);
+  animation:shine-sweep 3s ease-in-out infinite;
+  animation-delay:2s;pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════
+   #7 SWIPEABLE REVIEWS (mobile)
+═══════════════════════════════════════════ */
+@media(max-width:600px){
+  .rev-grid {
+    display:flex !important;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:14px;
+    padding-bottom:12px;
+    scrollbar-width:none;
+  }
+  .rev-grid::-webkit-scrollbar {display:none;}
+  .rev-grid .rc {
+    flex:0 0 82vw;
+    scroll-snap-align:start;
+  }
+  .rev-scroll-hint {
+    display:flex;justify-content:center;gap:6px;margin-top:10px;
+  }
+  .rev-dot {
+    width:6px;height:6px;border-radius:50%;
+    background:var(--bdr);transition:background .2s;
+  }
+  .rev-dot.active {background:var(--g);}
+}
+@media(min-width:601px){.rev-scroll-hint{display:none;}}
+
+/* ═══════════════════════════════════════════
+   #8 EXIT INTENT POPUP
+═══════════════════════════════════════════ */
+.exit-overlay {
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(10,10,15,.88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .35s,visibility .35s;
+  padding:20px;
+}
+.exit-overlay.open {opacity:1;visibility:visible;}
+.exit-box {
+  background:var(--bg1);border:1px solid var(--g-bdr);
+  border-top:3px solid var(--g);border-radius:22px;
+  padding:36px 32px;max-width:420px;width:100%;
+  text-align:center;position:relative;
+  transform:scale(.92);transition:transform .35s var(--spr);
+}
+.exit-overlay.open .exit-box {transform:scale(1);}
+.exit-close {
+  position:absolute;top:14px;right:16px;
+  background:var(--bg2);border:1px solid var(--bdr);
+  color:var(--t2);width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;
+  cursor:pointer;transition:color .2s,border-color .2s;
+}
+.exit-close:hover {color:var(--g);border-color:var(--g-bdr);}
+.exit-icon {font-size:2.8rem;margin-bottom:12px;}
+.exit-title {font-family:var(--fh);font-size:1.6rem;text-transform:uppercase;margin-bottom:6px;}
+.exit-sub {font-size:.88rem;color:var(--t2);line-height:1.65;margin-bottom:6px;}
+.exit-sub-hi {font-family:var(--fi);font-size:.8rem;color:var(--t3);line-height:1.7;margin-bottom:20px;}
+.exit-code {
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--bg);border:2px solid var(--g);border-radius:12px;
+  padding:10px 20px;margin-bottom:20px;
+  font-family:'JetBrains Mono',monospace;font-size:1.8rem;
+  color:var(--g);letter-spacing:6px;
+}
+.exit-btn {
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;background:var(--g);color:#001C0E;
+  padding:14px;border-radius:var(--r);
+  font-family:var(--fh);font-size:1rem;letter-spacing:.8px;text-transform:uppercase;
+  box-shadow:0 6px 24px rgba(0,255,135,.32);
+  transition:filter .2s;cursor:pointer;margin-bottom:10px;
+}
+.exit-btn:hover {filter:brightness(1.08);}
+.exit-skip {font-size:.76rem;color:var(--t3);cursor:pointer;transition:color .2s;}
+.exit-skip:hover {color:var(--t2);}
+
+/* ═══════════════════════════════════════════
+   #9 SOCIAL PROOF TICKER
+═══════════════════════════════════════════ */
+.social-proof-bar {
+  background:rgba(0,255,135,.04);border-top:1px solid var(--g-bdr);border-bottom:1px solid var(--g-bdr);
+  padding:10px 0;overflow:hidden;position:relative;margin-bottom:0;
+}
+.sp-inner {
+  display:flex;align-items:center;gap:8px;
+  padding:0 20px;
+  animation:sp-fade-in .4s ease;
+}
+@keyframes sp-fade-in {from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.sp-dot {width:7px;height:7px;border-radius:50%;background:var(--g);flex-shrink:0;animation:blink 1.4s infinite;}
+.sp-text {font-size:.8rem;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sp-text strong {color:var(--g);}
+.sp-time {font-size:.72rem;color:var(--t3);flex-shrink:0;margin-left:auto;padding-left:12px;}
 </style>
 </head>
 <body>
@@ -1109,6 +1307,15 @@ footer {
   </div>
 </div>
 
+<!-- ══════ SOCIAL PROOF TICKER #9 ══════ -->
+<div class="social-proof-bar z1" id="socialProofBar">
+  <div class="sp-inner" id="spInner">
+    <div class="sp-dot"></div>
+    <div class="sp-text" id="spText"><strong>Vikram</strong> from Mumbai just registered with <strong>W300</strong> ✓</div>
+    <div class="sp-time" id="spTime">just now</div>
+  </div>
+</div>
+
 <!-- ══════ HERO ══════ -->
 <section class="z1 inner" id="home">
   <div class="hero-grid">
@@ -1144,6 +1351,26 @@ footer {
         </button>
       </div>
       <div class="cricket-hook">🏏 Watch IPL Live in HD for FREE + Instant UPI Payouts</div>
+
+      <!-- #1 COUNTDOWN TIMER -->
+      <div class="hero-countdown" id="heroCountdown">
+        <span class="hcd-label">🔥 Offer ends in</span>
+        <div class="hcd-seg">
+          <span class="hcd-num" id="cdH">02</span>
+          <span class="hcd-unit">hrs</span>
+        </div>
+        <span class="hcd-sep">:</span>
+        <div class="hcd-seg">
+          <span class="hcd-num" id="cdM">47</span>
+          <span class="hcd-unit">min</span>
+        </div>
+        <span class="hcd-sep">:</span>
+        <div class="hcd-seg">
+          <span class="hcd-num" id="cdS">33</span>
+          <span class="hcd-unit">sec</span>
+        </div>
+      </div>
+
       <div class="hero-ctas">
         <button class="btn-dl download-btn">
           <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -1167,8 +1394,8 @@ footer {
 
 <!-- ══════ STATS ══════ -->
 <div class="inner rv" style="margin:0 auto 60px"><div class="stats-grid">
-  <div class="sc"><div class="sn">140K+</div><div class="sl">Active Users</div><div class="sl-hi">सक्रिय यूजर</div></div>
-  <div class="sc"><div class="sn">4.9★</div><div class="sl">App Rating</div><div class="sl-hi">ऐप रेटिंग</div></div>
+  <div class="sc"><div class="sn" data-target="140000" data-suffix="K+">0K+</div><div class="sl">Active Users</div><div class="sl-hi">सक्रिय यूजर</div></div>
+  <div class="sc"><div class="sn" data-target="49" data-suffix="★" data-decimal="1">0★</div><div class="sl">App Rating</div><div class="sl-hi">ऐप रेटिंग</div></div>
   <div class="sc"><div class="sn">&lt;1m</div><div class="sl">UPI Payout</div><div class="sl-hi">UPI निकासी</div></div>
   <div class="sc"><div class="sn">24/7</div><div class="sl">Hindi Support</div><div class="sl-hi">हिंदी सपोर्ट</div></div>
 </div></div>
@@ -1255,7 +1482,7 @@ footer {
 <!-- ══════ REVIEWS ══════ -->
 <section class="sec inner z1" id="reviews">
   <div class="rv" style="text-align:center"><div class="sec-tag"><i></i>Reviews · समीक्षाएं</div><h2 class="sec-h">Players <span class="g">Love It</span></h2></div>
-  <div class="rev-grid">
+  <div class="rev-grid" id="revGrid">
     <div class="rc rv rv-d1">
       <div class="rc-top"><div><div class="rc-name">Rahul S.</div><div class="rc-loc">Mumbai, MH</div></div><div class="stars">★★★★★</div></div>
       <p class="rc-en">"W300 bonus was massive. Download took 2 minutes, withdrawal instant!"</p>
@@ -1274,6 +1501,11 @@ footer {
       <p class="rc-hi">"हिंदी सपोर्ट उत्कृष्ट। लाइव क्रिकेट पर ऑड्स शानदार!"</p>
       <div class="rc-badge">✓ Verified</div>
     </div>
+  </div>
+  <div class="rev-scroll-hint" id="revDots">
+    <div class="rev-dot active"></div>
+    <div class="rev-dot"></div>
+    <div class="rev-dot"></div>
   </div>
 </section>
 
@@ -1406,6 +1638,26 @@ footer {
 
 </footer>
 
+<!-- COPY TOOLTIP #3 -->
+<div class="copy-tooltip" id="copyTooltip">✓ W300 Copied! Use it at registration</div>
+
+<!-- EXIT INTENT POPUP #8 -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-box">
+    <button class="exit-close" id="exitClose">✕</button>
+    <div class="exit-icon">⚡</div>
+    <div class="exit-title">Wait! Don't Miss Out</div>
+    <p class="exit-sub">Your W300 bonus is still active — register in 2 minutes and claim it now!</p>
+    <p class="exit-sub-hi">रुकिए! W300 कोड अभी भी एक्टिव है — 2 मिनट में रजिस्टर करें!</p>
+    <div class="exit-code">W300</div>
+    <button class="exit-btn download-btn">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#001C0E"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Download & Claim Now
+    </button>
+    <div class="exit-skip" id="exitSkip">Maybe later · बाद में</div>
+  </div>
+</div>
+
 </div><!-- .wrap -->
 
 <!-- STICKY MOBILE BOTTOM BAR -->
@@ -1511,8 +1763,193 @@ const TG='https://t.me/+i5vOt35UIvkzMjJh';
 })();
 
 /* ════════════════════════════════════════════
-   DIGITAL TICKER — inline footer counter
+   #1 HERO COUNTDOWN TIMER
 ════════════════════════════════════════════ */
+(function(){
+  // Set a fixed end time 2h47m33s from first load (stored in sessionStorage)
+  var key = 'sb_cd_end';
+  var end = sessionStorage.getItem(key);
+  if(!end){
+    end = Date.now() + (2*3600 + 47*60 + 33) * 1000;
+    sessionStorage.setItem(key, end);
+  } else {
+    end = parseInt(end);
+  }
+  var elH = document.getElementById('cdH');
+  var elM = document.getElementById('cdM');
+  var elS = document.getElementById('cdS');
+  if(!elH) return;
+  function pad(n){ return String(Math.max(0,n)).padStart(2,'0'); }
+  function tick(){
+    var diff = Math.max(0, end - Date.now());
+    var h = Math.floor(diff/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    var newS = pad(s);
+    if(elS.textContent !== newS){
+      elS.classList.remove('tick');
+      void elS.offsetWidth;
+      elS.classList.add('tick');
+    }
+    elH.textContent = pad(h);
+    elM.textContent = pad(m);
+    elS.textContent = newS;
+    if(diff <= 0){
+      // Reset timer on expiry
+      end = Date.now() + (2*3600 + 47*60 + 33)*1000;
+      sessionStorage.setItem(key, end);
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ════════════════════════════════════════════
+   #2 ANIMATED STAT COUNTERS
+════════════════════════════════════════════ */
+(function(){
+  var els = document.querySelectorAll('.sn[data-target]');
+  if(!els.length) return;
+  var obs = new IntersectionObserver(function(entries, o){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      o.unobserve(e.target);
+      var el = e.target;
+      var target = parseInt(el.dataset.target);
+      var suffix = el.dataset.suffix || '';
+      var isDecimal = el.dataset.decimal === '1';
+      var duration = 1600;
+      var start = performance.now();
+      function step(now){
+        var p = Math.min((now - start)/duration, 1);
+        var ease = 1 - Math.pow(1-p, 3);
+        var val = target * ease;
+        if(isDecimal){
+          el.textContent = (val/10).toFixed(1) + suffix;
+        } else {
+          var display = val >= 1000 ? Math.round(val/1000) + suffix : Math.round(val) + suffix;
+          el.textContent = display;
+        }
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold: 0.3});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ════════════════════════════════════════════
+   #3 COPY TOOLTIP — upgrade copyCode
+════════════════════════════════════════════ */
+var _origCopyCode = copyCode;
+copyCode = function(id){
+  _origCopyCode(id);
+  var tip = document.getElementById('copyTooltip');
+  if(!tip) return;
+  tip.classList.add('show');
+  clearTimeout(tip._t);
+  tip._t = setTimeout(function(){ tip.classList.remove('show'); }, 2400);
+};
+
+/* ════════════════════════════════════════════
+   #4 LAZY LOAD — sections below fold
+════════════════════════════════════════════ */
+(function(){
+  var lazyEls = document.querySelectorAll('#reviews, #payments, #faq, footer');
+  if('loading' in HTMLImageElement.prototype) return; // native lazy load available
+  var obs = new IntersectionObserver(function(entries, o){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.contentVisibility = 'visible';
+        o.unobserve(e.target);
+      }
+    });
+  }, {rootMargin:'200px'});
+  lazyEls.forEach(function(el){
+    el.style.contentVisibility = 'auto';
+    obs.observe(el);
+  });
+})();
+
+/* ════════════════════════════════════════════
+   #6 STICKY BAR W300 — already handled in CSS
+════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════
+   #7 SWIPEABLE REVIEWS DOTS
+════════════════════════════════════════════ */
+(function(){
+  var grid = document.getElementById('revGrid');
+  var dots = document.querySelectorAll('#revDots .rev-dot');
+  if(!grid || !dots.length) return;
+  grid.addEventListener('scroll', function(){
+    var idx = Math.round(grid.scrollLeft / grid.offsetWidth);
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  }, {passive:true});
+})();
+
+/* ════════════════════════════════════════════
+   #8 EXIT INTENT POPUP
+════════════════════════════════════════════ */
+(function(){
+  var overlay = document.getElementById('exitOverlay');
+  var closeBtn = document.getElementById('exitClose');
+  var skipBtn  = document.getElementById('exitSkip');
+  if(!overlay) return;
+  var shown = sessionStorage.getItem('sb_exit_shown');
+  if(shown) return;
+  function showExit(){
+    if(sessionStorage.getItem('sb_exit_shown')) return;
+    sessionStorage.setItem('sb_exit_shown','1');
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    ga4('exit_intent_shown',{event_category:'Engagement'});
+  }
+  function hideExit(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  // Desktop: mouse leaves viewport top
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY < 10) showExit();
+  });
+  // Mobile: back button / page hide after 15s engagement
+  var mobileTimer = setTimeout(function(){
+    if(window.innerWidth <= 600) showExit();
+  }, 15000);
+  closeBtn && closeBtn.addEventListener('click', hideExit);
+  skipBtn  && skipBtn.addEventListener('click',  hideExit);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) hideExit(); });
+})();
+
+/* ════════════════════════════════════════════
+   #9 SOCIAL PROOF TICKER
+════════════════════════════════════════════ */
+(function(){
+  var el = document.getElementById('spText');
+  var elT = document.getElementById('spTime');
+  var bar = document.getElementById('spInner');
+  if(!el) return;
+  var names = ['Vikram','Rohit','Priya','Amit','Sneha','Raj','Kavya','Arjun','Pooja','Suresh','Deepa','Nikhil'];
+  var cities = ['Mumbai','Delhi','Bengaluru','Chennai','Pune','Hyderabad','Kolkata','Jaipur','Ahmedabad','Surat'];
+  var actions = [
+    'just registered with <strong>W300</strong> ✓',
+    'just copied <strong>W300</strong> code ✓',
+    'claimed the W300 bonus ✓',
+    'just downloaded the app ✓',
+    'made their first deposit ✓'
+  ];
+  var times = ['just now','1 min ago','2 mins ago','3 mins ago'];
+  function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function update(){
+    bar.style.animation = 'none';
+    void bar.offsetWidth;
+    bar.style.animation = 'sp-fade-in .4s ease';
+    el.innerHTML = '<strong>'+rand(names)+'</strong> from '+rand(cities)+' '+rand(actions);
+    elT.textContent = rand(times);
+  }
+  setInterval(update, 4000);
+})();
 (function(){
   const el     = document.getElementById('ftrCounter');
   const elBand = document.getElementById('ftrBandNum');
