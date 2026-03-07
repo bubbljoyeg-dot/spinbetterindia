@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /255/
+Disallow: /404.html
+Sitemap: https://spinbetterindia.online/sitemap.xml
